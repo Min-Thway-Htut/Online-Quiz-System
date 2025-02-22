@@ -1,0 +1,6 @@
+<h1>Leaderboard</h1>
+<ul>
+    {% for score in scores %}
+    <li>{{ score.user.username }} - scored {score} out of {questions.count()}</li>
+    {% endfor %}
+</ul>
