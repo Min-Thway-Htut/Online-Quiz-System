@@ -1,12 +1,28 @@
-<h1>{{ quiz.title }}</h1>
-<form method="post" action="{% url 'submit_quiz' quiz.id %}">
-    {% csrf_token %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/styles.css'%}">
+    <title>{{quiz.title}}</title>
+</head>
+<body>
+    <h1>{{ quiz.title }}</h1>
+    <form method="post" action="{% url 'submit_quiz' quiz.id %}">
+        {% csrf_token %}
+    
+        {% for question in questions %}
+        <div class="question">
+        <p id="quiz-text">{{ question.text }}</p>
+            <input type="radio" name="q{{ question.id }}" value="1"> {{ question.option1 }}<br>
+        <input type="radio" name="q{{ question.id }}" value="2"> {{ question.option2 }}<br>
+        <input type="radio" name="q{{ question.id }}" value="3"> {{ question.option3 }}<br>
+        </div>
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
 
-    {% for question in questions %}
-    <p>{{ question.text }}</p>
-    <input type="radio" name="q{{ question.id }}" value="1"> {{ question.option1 }}<br>
-    <input type="radio" name="q{{ question.id }}" value="2"> {{ question.option2 }}<br>
-    <input type="radio" name="q{{ question.id }}" value="3"> {{ question.option3 }}<br>
-    {% endfor %}
-    <button type="submit">Submit</button>
-</form>
+

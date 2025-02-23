@@ -1,3 +1,16 @@
-<h2>Quiz Completed</h2>
-<p>You scored {{ score }} out of {{ quiz.question_set.count }}!</p>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/styles.css'%}">
+    <title>Online Quiz System</title>
+</head>
+<body>
+    
+<h1>Quiz Completed</h1>
+<p>You scored {{ score }} out of {{ quiz.question_set.count }}</p>
 <a href="{% url 'quiz_list' %}">Back to Quizzes</a>
+</body>
+</html>

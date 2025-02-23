@@ -26,8 +26,13 @@ def submit_quiz(request, quiz_id):
 
         print(f'Score: {score}')  
         UserScore.objects.create(user=request.user, quiz=quiz, score=score)
-        return HttpResponse(f"You scored {score} out of {questions.count()}!")
+        context = {
+        'score': score,
+        'quiz': quiz
+       }
+        return render(request, 'quiz_result.html', context)
     
+
     return HttpResponse("Invalid request")
 
 
